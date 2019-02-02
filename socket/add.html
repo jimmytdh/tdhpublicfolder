@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queuing System</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .printable {
+            border:2px solid #333;
+            width:300px;
+            margin:0 auto;
+            visibility: hidden;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .printable {
+                visibility: visible;
+                position: absolute;
+                top:0;
+                border:5px solid #333;
+                width:500px;
+                margin:0 auto;
+                padding: 20px;
+                border-radius: 20px;
+            }
+            .number, .number font {
+                visibility: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="title-selection bg-primary">
+        Talisay District Hospital
+    </div>
+    <div class="selection">
+        <button type="button" class="btnPwd btn btn-main btn-flat btn-defaultr" data-toggle="modal" data-target="#senior">Senior/PWD/Pregnant</button>
+        <button type="button" class="btnPedia btn btn-main btn-success">Pedia</button>
+        <br />
+        <button type="button" class="btnIm btn btn-main btn-info">Internal Medicine</button>
+        <button type="button" class="btnSurgery btn-main btn btn-primary">Minor Surgery</button>
+        <br />
+        <button type="button" class="btnOb btn btn-main btn-danger">OB</button>
+        <button type="button" class="btnDental btn btn-main btn-warning">Dental</button>
+        <br />
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="senior" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <h4 class="modal-title">Select Destination</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body seniorSelection">
+                <div class="form-group">
+                    <button type="button" class="btn btn-success col-sm-12">Pedia</button><br />
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-info col-sm-12">Internal Medicine</button><br />
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary col-sm-12">Minor Surgery</button><br />
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger col-sm-12">OB</button><br />
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-warning col-sm-12">Minor Surgery</button><br />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for ID -->
+<div class="modal fade" id="modalNumber" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+               <span class="title">
+                   Your number is:
+               </span>
+                <br />
+                <span class="number">
+                    23
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="printable">
+    <div class="number">
+        Republic of the Philippines<br />
+        Department of Health - Regional Office No. VII<br />
+        <font style="font-size:2em">TALISAY DISTRICT HOSPITAL</font>
+    </div>
+
+</div>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+<script>
+    var sock = new WebSocket("ws://localhost:5000");
+    sock.onopen = function(event) {
+        //alert('Socket connected successfully');
+        sock.send('Hi Jimmy');
+//        $.get('getNumber.php',function(data){
+//            console.log(data);
+//        });
+    };
+
+    sock.onmessage = function (event) {
+        console.log(event);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queuing System</title>
+</head>
+<body>
+    <script src="jquery.js"></script>
+    <script>
+        var sock = new WebSocket("ws://localhost:5000");
+        sock.onopen = function(event) {
+            //alert('Socket connected successfully');
+            sock.send('Hi Jimmy');
+            $.get('getNumber.php',function(data){
+                console.log(data);
+            });
+        };
+
+        sock.onmessage = function (event) {
+            console.log(event);
+        }
+    </script>
+</body>
+</html>
